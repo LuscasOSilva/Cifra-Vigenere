@@ -44,12 +44,13 @@ def cifrador():
     for caracter in mensagem:
         if caracter.isalpha():
             criptograma = criptograma + chr(cifra(caracter, chave[percorre_chave]))
+            if percorre_chave == len(chave) - 1:
+                percorre_chave = 0
+            else:
+                percorre_chave += 1
         else:
             criptograma = criptograma + caracter
-        if percorre_chave == len(chave) - 1:
-            percorre_chave = 0
-        else:
-            percorre_chave += 1
+
     return criptograma
 
 def decifrador():
@@ -60,12 +61,13 @@ def decifrador():
     for caracter in criptograma:
         if caracter.isalpha():
             mensagem = mensagem + chr(decifra(caracter, chave[percorre_chave]))
+            if percorre_chave == len(chave) - 1:
+                percorre_chave = 0
+            else:
+                percorre_chave += 1
         else:
             mensagem = mensagem + caracter
-        if percorre_chave == len(chave) - 1:
-            percorre_chave = 0
-        else:
-            percorre_chave += 1
+
     return mensagem
 
 def escolha():
