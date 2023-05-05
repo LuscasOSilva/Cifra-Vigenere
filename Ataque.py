@@ -1,4 +1,5 @@
-import re
+import collections
+import math
 
 mensagem = ''.join(filter(str.isalpha, input("Digite a mensagem: ").upper())) #Converte para maiúsculas
 
@@ -8,17 +9,18 @@ tamanhos = [0]*19
 for i in range(len(mensagem) - 2):
     sequencia = mensagem[i:i+3]
     if sequencia in repeticoes:
-        repeticoes[sequencia]["quantidade"] += 1
-        distancia = i - repeticoes[sequencia]["ultima_ocorrencia"]
+        #pega distancia da penultima ocorrencia até a ultima 
+        distancia = i - repeticoes[sequencia]["ocorrencias"][len(repeticoes[sequencia]["ocorrencias"]) - 1] + 1
+        #Descobre o tamanho da chave
         for tamanho_chave in reversed(range(len(tamanhos))):
             if distancia % (tamanho_chave + 2) == 0:
                 tamanhos[tamanho_chave] += 1
                 distancia = tamanho_chave/2
-        repeticoes[sequencia]["ultima_ocorrencia"] = i+3
+        #Separa o primeiro indice da ultima repetição
+        repeticoes[sequencia]["ocorrencias"].append(i)
     else:
         repeticoes[sequencia] = {
-            "quantidade": 1,
-            "ultima_ocorrencia": i+3
+            "ocorrencias": i
         }
 print(tamanhos)
 '''
