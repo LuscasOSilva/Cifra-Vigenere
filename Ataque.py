@@ -11,15 +11,11 @@ for i in range(len(mensagem) - 2):
     sequencia = mensagem[i:i+3]
     if sequencia in repeticoes:
         #pega distancia da penultima ocorrencia até a ultima 
-        distancia = i - repeticoes[sequencia]["ultima"] + 1
         #Separa o primeiro indice da ultima repetição
-        repeticoes[sequencia]["distancias"].append(distancia)
-        repeticoes[sequencia]["ultima"] = i
+        repeticoes[sequencia].append(i)
     else:
-        repeticoes[sequencia] = {
-            "ultima": i,
-            "distancias": []
-        }
+        repeticoes[sequencia] = []
+
 
 def find_key(message, lenkey):
     english_frequencias = dict(sorted({
@@ -64,22 +60,30 @@ def find_key(message, lenkey):
             move_dicionario_valor = frequencias_mensagem[next(iter(frequencias_mensagem))]
             frequencias_mensagem.pop(next(iter(frequencias_mensagem)))
             frequencias_mensagem[move_dicionario_chave] = move_dicionario_valor
+        # Adiciona o caracter encontrado para a chave
         chave = chave + caracter_chave
     return chave
-
+'''
 print(find_key(mensagem, 8))
 '''
+
+final = {}
+for i in repeticoes:
+    if len(repeticoes[i]) > 1:
+        final[i] = repeticoes[i]
+
 def lenkey(rep):
     tamanhos = []
     for sequencia, distancias_sequencia in rep.items():
         for divisor in range(1, 21):
-            if all(d % divisor == 0 for d in distancias_sequencia["distancias"]):
+            if all(d % divisor == 0 for d in distancias_sequencia):
                 tamanhos.append(divisor * len(sequencia))
     # Calcula a média dos tamanhos encontrados para determinar o tamanho da chave
     tamanho_chave = round(sum(tamanhos) / len(tamanhos))
     return tamanho_chave
 
-print(lenkey(repeticoes))'''
+print(find_key(mensagem, lenkey(final)))
+
 '''
 #Descobre o tamanho da chave
     for tamanho_chave in reversed(range(len(tamanhos))):
