@@ -58,9 +58,9 @@ def cifrador():
             # Sendo letra, ele irá chamar a função que criptografa a letra
             # Letra criptografada adicionada ao criptograma
             criptograma = criptograma + chr(cifra(caracter, chave[percorre_chave]))
-            #percorre os endereços da chave
+            # Percorre os endereços da chave
             if percorre_chave == len(chave) - 1:
-                # se estivermos no ultimo caracter da chave, voltamos para o primeiro
+                # Se estivermos no ultimo caracter da chave, voltamos para o primeiro
                 percorre_chave = 0
             else:
                 percorre_chave += 1
@@ -80,9 +80,9 @@ def decifrador():
             # Sendo letra, ele irá chamar a função que decifra a letra
             # Letra criptografada adicionada ao criptograma
             mensagem = mensagem + chr(decifra(caracter, chave[percorre_chave]))
-            #percorre os endereços da chave
+            # Percorre os endereços da chave
             if percorre_chave == len(chave) - 1:
-                # se estivermos no ultimo caracter da chave, voltamos para o primeiro
+                # Se estivermos no ultimo caracter da chave, voltamos para o primeiro
                 percorre_chave = 0
             else:
                 percorre_chave += 1
