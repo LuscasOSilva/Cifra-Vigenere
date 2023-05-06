@@ -1,6 +1,10 @@
 percorre_chave = 0
 
-def cifra(letra: str, chave: str):
+def cifra(letra: str, chave: str) -> str:
+    if letra.isupper():
+        chave = chave.upper()
+    else:
+        chave = chave.lower()
     if (ord(letra) >= 65 
     and ord(letra) <= 90 
     and ord(letra) + ord(chave) - 65 > 90):
@@ -19,6 +23,10 @@ def cifra(letra: str, chave: str):
         return cifrada
 
 def decifra(letra: str, chave: str) -> str:
+    if letra.isupper():
+        chave = chave.upper()
+    else:
+        chave = chave.lower()
     if (ord(letra) >= 65 
         and ord(letra) <= 90 
         and ord(letra) - ord(chave) + 65 < 65):
