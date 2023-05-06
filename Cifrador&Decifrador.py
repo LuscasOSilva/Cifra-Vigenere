@@ -68,7 +68,7 @@ def cifrador():
             # Se não for letra, apenas adiciona o caracter no criptograma ex:"," " "
             criptograma = criptograma + caracter
 
-    return criptograma
+    return f'O Criptograma criado é: \n\n{criptograma}'
 
 def decifrador():
     global percorre_chave
@@ -90,7 +90,7 @@ def decifrador():
             # Se não for letra, apenas adiciona o caracter no criptograma ex:"," " "
             mensagem = mensagem + caracter
 
-    return mensagem
+    return f'A mensagem descriptografada é: \n\n{mensagem}'
 
 def escolha():
     choice = int(input("Escolha\n1 - Cifrador\n2 - Decifrador:\n"))

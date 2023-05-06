@@ -1,21 +1,29 @@
 from unidecode import unidecode
 import collections
 import string
-import math
 
-mensagem = unidecode(''.join(filter(str.isalpha, input("Digite a mensagem: ").upper()))) #Converte para maiúsculas
+def message():
+    # Retira o que não for letra, deixa tudo em letras maisculas e retira acentos
+    mensagem = unidecode(''.join(filter(str.isalpha, input("Digite a mensagem: ").upper())))
+    return mensagem
 
-repeticoes = {}
+def find_rep(mensagem):
+    repeticoes = {}
 
-for i in range(len(mensagem) - 2):
-    sequencia = mensagem[i:i+3]
-    if sequencia in repeticoes:
-        #pega distancia da penultima ocorrencia até a ultima 
-        #Separa o primeiro indice da ultima repetição
-        repeticoes[sequencia].append(i)
-    else:
-        repeticoes[sequencia] = []
-
+    for i in range(len(mensagem) - 2):
+        sequencia = mensagem[i:i+3]
+        if sequencia in repeticoes:
+            #pega distancia da penultima ocorrencia até a ultima 
+            #Separa o primeiro indice da ultima repetição
+            repeticoes[sequencia].append(i)
+        else:
+            repeticoes[sequencia] = []
+    # Separa apenas os padrões que foram encontrados mais de 1 vez
+    final = {}
+    for i in repeticoes:
+        if len(repeticoes[i]) > 1:
+            final[i] = repeticoes[i]
+    return final
 
 def find_key(message, lenkey):
     english_frequencias = dict(sorted({
@@ -63,14 +71,6 @@ def find_key(message, lenkey):
         # Adiciona o caracter encontrado para a chave
         chave = chave + caracter_chave
     return chave
-'''
-print(find_key(mensagem, 8))
-'''
-
-final = {}
-for i in repeticoes:
-    if len(repeticoes[i]) > 1:
-        final[i] = repeticoes[i]
 
 def lenkey(rep):
     tamanhos = []
@@ -80,19 +80,8 @@ def lenkey(rep):
                 tamanhos.append(divisor * len(sequencia))
     # Calcula a média dos tamanhos encontrados para determinar o tamanho da chave
     tamanho_chave = round(sum(tamanhos) / len(tamanhos))
-    return tamanho_chave
+    if tamanho_chave:
+        return tamanho_chave
 
-print(find_key(mensagem, lenkey(final)))
-
-'''
-#Descobre o tamanho da chave
-    for tamanho_chave in reversed(range(len(tamanhos))):
-        if distancia % (tamanho_chave + 2) == 0:
-            tamanhos[tamanho_chave] += 1
-'''
-
-'''
-for sequencia in repeticoes:
-    if repeticoes[sequencia]["quantidade"] > 1:
-        print(f"{sequencia}")
-'''
+mensagem = message()
+print(find_key(mensagem, lenkey(find_rep(mensagem))))
