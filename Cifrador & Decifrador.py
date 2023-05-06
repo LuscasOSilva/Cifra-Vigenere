@@ -1,5 +1,6 @@
 percorre_chave = 0
 
+# Função que usa o codigo ASCII das letras para cifragem
 def cifra(letra: str, chave: str) -> str:
     if letra.isupper():
         chave = chave.upper()
@@ -8,11 +9,13 @@ def cifra(letra: str, chave: str) -> str:
     if (ord(letra) >= 65 
     and ord(letra) <= 90 
     and ord(letra) + ord(chave) - 65 > 90):
+    # Subtrai o valor do inicio das letra em ASCII + 26 (valor do alfabeto)
         cifrada = ord(letra) + ord(chave) - 91
         return cifrada
     if (ord(letra) >= 97 
     and ord(letra) <= 122 
     and ord(letra) + ord(chave) - 97 > 122):
+    # Subtrai o valor do inicio das letra em ASCII + 26 (valor do alfabeto)
         cifrada = ord(letra) + ord(chave) - 123
         return cifrada
     if ord(letra) >= 65 and ord(letra) <= 90:
@@ -46,17 +49,23 @@ def decifra(letra: str, chave: str) -> str:
 
 def cifrador():
     global percorre_chave
-    mensagem = input("Digite a mensagem a ser descriptografada: ")
-    chave = input("Digite a chave para cifragem: ")
+    mensagem = input("Digite a mensagem a ser criptografada: ")
+    chave = input("Digite a chave para criptografia: ")
     criptograma = ""
     for caracter in mensagem:
+        # Confere se é letra
         if caracter.isalpha():
+            # Sendo letra, ele irá chamar a função que criptografa a letra
+            # Letra criptografada adicionada ao criptograma
             criptograma = criptograma + chr(cifra(caracter, chave[percorre_chave]))
+            #percorre os endereços da chave
             if percorre_chave == len(chave) - 1:
+                # se estivermos no ultimo caracter da chave, voltamos para o primeiro
                 percorre_chave = 0
             else:
                 percorre_chave += 1
         else:
+            # Se não for letra, apenas adiciona o caracter no criptograma ex:"," " "
             criptograma = criptograma + caracter
 
     return criptograma
@@ -68,18 +77,23 @@ def decifrador():
     mensagem = ""
     for caracter in criptograma:
         if caracter.isalpha():
+            # Sendo letra, ele irá chamar a função que decifra a letra
+            # Letra criptografada adicionada ao criptograma
             mensagem = mensagem + chr(decifra(caracter, chave[percorre_chave]))
+            #percorre os endereços da chave
             if percorre_chave == len(chave) - 1:
+                # se estivermos no ultimo caracter da chave, voltamos para o primeiro
                 percorre_chave = 0
             else:
                 percorre_chave += 1
         else:
+            # Se não for letra, apenas adiciona o caracter no criptograma ex:"," " "
             mensagem = mensagem + caracter
 
     return mensagem
 
 def escolha():
-    choice = int(input("Escolha\n1 - Cifrador\n2 - decifrador:\n"))
+    choice = int(input("Escolha\n1 - Cifrador\n2 - Decifrador:\n"))
 
     if choice == 1:
         print(cifrador())
