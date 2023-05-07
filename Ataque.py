@@ -2,6 +2,8 @@ from unidecode import unidecode
 import collections
 import string
 
+# Luana Cruz Silva 202033543 - Lucas de Oliveira Silva 200022857
+
 def message():
     # Retira o que não for letra, deixa tudo em letras maisculas e retira acentos
     mensagem = unidecode(''.join(filter(str.isalpha, input("Digite a mensagem: ").upper())))

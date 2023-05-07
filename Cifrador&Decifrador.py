@@ -1,5 +1,7 @@
 from unidecode import unidecode
 
+#Luana Cruz Silva 202033543 - Lucas de Oliveira Silva 200022857
+
 percorre_chave = 0
 
 # Função que usa o codigo ASCII das letras para cifragem
