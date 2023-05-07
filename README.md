@@ -13,7 +13,7 @@ A função **escolha** permite ao usuário escolher entre cifrar ou decifrar (1 
 Foi usado o código ASCII das letras para achar a letra cifrada e/ou decifrada.
 
 ## Como Rodar
-1. Abra um terminal na pasta onde se encontra o arquivo.
+1. Abra um terminal e vá até a pasta onde se encontra o arquivo.
 2. Execute o comando python Cifrador&Decifrador.py no terminal.
 ```
 python Cifrador&Decifrador.py
@@ -24,13 +24,12 @@ python Cifrador&Decifrador.py
 
 # Descrição "Ataque"
 ## Como usar
-Este código criptografa e decriptografa mensagens usando a criptografia Vigenere. Ele também tenta quebrar as mensagens criptografadas usando métodos de quebra de cifras Vigenere.
 
-Para criptografar uma mensagem, basta executar o script e seguir as instruções na linha de comando. O script solicitará a mensagem a ser criptografada e a chave a ser usada para criptografar a mensagem. Em seguida, ele imprimirá a mensagem criptografada.
-
-Para decriptografar uma mensagem, basta fornecer a mensagem criptografada e a chave usada para criptografar a mensagem. Em seguida, o script imprimirá a mensagem original.
+Este código tenta quebrar as mensagens criptografadas usando métodos de quebra de cifras Vigenere através de técnicas como o método de Kasiski para descobrir a chave para descriptografia.
 
 Para quebrar a cifra Vigenere e descobrir a chave usada para criptografar uma mensagem, basta fornecer a mensagem criptografada. O script tentará determinar o tamanho da chave e, em seguida, quebrará a cifra usando uma combinação de análise de frequência de letras e o índice de coincidência.
+
+Caso a chave encontrada não satisfaça a descriptografia, digite "n" para que o código encontre uma chave menor que possa ser correta.
 
 ## Como Rodar
 1. Abra um terminal na pasta onde se encontra o arquivo.
@@ -42,7 +41,7 @@ pip install unidecode
 ```
 python Ataque.py
 ```
-4. Digite a mensagem criptografada, importante estar sem Enter.
+4. Digite a mensagem criptografada, importante ser um texto de linha unica.
 
 ## Exemplo
 ```
@@ -51,9 +50,6 @@ python Ataque.py
 ```
 Digite a mensagem: 
 rvgllakieg tye tirtucatzoe.  whvnvvei i winu mpsecf xronieg giid abfuk thv mfuty; wyenvvvr ik ij a drmg, drzzqly eomemsei in dy jouc; wyenvvvr i wied mpsvlf znmollnkarzlp palszng seworv cfffzn narvhfusvs, rnd srzngznx up khv rerr ff emeiy flnvrac i deek; aed ejpvcirlcy wyeeevvr dy hppfs gvt jucy ae upgei haed ff mv, tyat zt ieqliies r skroeg dorrl grieczplv tf prvvvnt de wrod dvliseiatvlp stvpginx ieto khv stievt, aed detyouicrlcy keotkieg geoglv's hrtj ofw--tyen, z atcolnk it yixh tzmv to xek to jer as jofn aj i tan.  khzs ij mp susskitltv foi pzstfl rnd sacl. wzty a pyicosfpyicrl wlolrzsh tako tyrfws yidsecf lpoe hzs snoid; i huzetcy kakv tf thv syip.  khvre zs eotyieg slrgrijieg ie tyis. zf khep blt keen it, rldosk acl mvn zn tyezr dvgiee, jode tzmv or ftyer, thvrijh merp nvarcy khe jade fvecinxs kowrrus tye fcern nity mv.
-```
-```
-ARARAARARA
 ```
 
 # Auxílio
