@@ -14,13 +14,17 @@ Foi usado o código ASCII das letras para achar a letra cifrada e/ou decifrada.
 
 ## Como Rodar
 1. Abra um terminal e vá até a pasta onde se encontra o arquivo.
-2. Execute o comando python Cifrador&Decifrador.py no terminal.
+2. Instale a biblioteca *unidecode*
+```
+pip install unidecode
+```
+3. Execute o comando python Cifrador&Decifrador.py no terminal.
 ```
 python Cifrador&Decifrador.py
 ```
-3. Escolha entre cifrar ou decifrar a mensagem digitando 1 ou 2 e pressionando Enter.
-4. Digite a mensagem e a chave quando solicitado.
-5. A mensagem cifrada ou decifrada será exibida na tela.
+4. Escolha entre cifrar ou decifrar a mensagem digitando 1 ou 2 e pressionando Enter.
+5. Digite a mensagem e a chave quando solicitado.
+6. A mensagem cifrada ou decifrada será exibida na tela.
 
 # Descrição "Ataque"
 ## Como usar
