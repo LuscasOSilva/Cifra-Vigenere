@@ -25,6 +25,16 @@ def find_rep(mensagem):
             final[i] = repeticoes[i]
     return final
 
+def lenkey(rep):
+    tamanhos = []
+    for sequencia, distancias_sequencia in rep.items():
+        for divisor in range(1, 21):
+            if all(d % divisor == 0 for d in distancias_sequencia):
+                tamanhos.append(divisor * len(sequencia))
+    # Calcula a média dos tamanhos encontrados para determinar o tamanho da chave
+    tamanho_chave = round(sum(tamanhos) / len(tamanhos))
+    return tamanho_chave
+
 def find_key(message, lenkey):
     english_frequencias = dict(sorted({
         'E': 12.02, 'T': 9.10, 'A': 8.12, 'O': 7.68, 'I': 7.31, 'N': 6.95,
@@ -41,8 +51,9 @@ def find_key(message, lenkey):
         'H': 0.99, 'B': 0.83, 'Z': 0.47, 'J': 0.40, 'X': 0.21, 'K': 0.02,
         'Y': 0.01, 'W': 0.01
     }.items()))
-    
-    chave = ""
+
+    chave_portugues = ""
+    chave_ingles = ""
     for i in range(lenkey):
         frequencias_mensagem = {letter: 0 for letter in string.ascii_uppercase}
         total_caracters = 0
@@ -53,15 +64,33 @@ def find_key(message, lenkey):
         for letra in frequencias_mensagem:
             frequencias_mensagem[letra] = frequencias_mensagem[letra]*100/total_caracters
 
-        caracter_chave = ""
-        diferenca_chave = -1
+        caracter_chave_portugues = ""
+        diferenca_chave_portugues = -1
+        # Achar chave em portugues comparando as frequencias do texto com as da lingua portuguesa
         for i in range(26):
             diferenca = 0
             for x, y in zip(frequencias_mensagem, portuguese_frequencias):
                 diferenca += abs(frequencias_mensagem[x] - portuguese_frequencias[y])
-            if diferenca < diferenca_chave or diferenca_chave == -1:
-                diferenca_chave = diferenca
-                caracter_chave = next(iter(frequencias_mensagem))
+            if diferenca < diferenca_chave_portugues or diferenca_chave_portugues == -1:
+                diferenca_chave_portugues = diferenca
+                caracter_chave_portugues = next(iter(frequencias_mensagem))
+
+            # Move o dicionario, primeira posição vai pro ultimo lugar no dicionario
+            move_dicionario_chave = next(iter(frequencias_mensagem))
+            move_dicionario_valor = frequencias_mensagem[next(iter(frequencias_mensagem))]
+            frequencias_mensagem.pop(next(iter(frequencias_mensagem)))
+            frequencias_mensagem[move_dicionario_chave] = move_dicionario_valor
+
+        caracter_chave_ingles = ""
+        diferenca_chave_ingles = -1
+        # Achar chave em ingles comparando as frequencias do texto com as da lingua inglesa
+        for i in range(26):
+            diferenca = 0
+            for x, y in zip(frequencias_mensagem, english_frequencias):
+                diferenca += abs(frequencias_mensagem[x] - english_frequencias[y])
+            if diferenca < diferenca_chave_ingles or diferenca_chave_ingles == -1:
+                diferenca_chave_ingles = diferenca
+                caracter_chave_ingles = next(iter(frequencias_mensagem))
 
             # Move o dicionario, primeira posição vai pro ultimo lugar no dicionario
             move_dicionario_chave = next(iter(frequencias_mensagem))
@@ -69,19 +98,21 @@ def find_key(message, lenkey):
             frequencias_mensagem.pop(next(iter(frequencias_mensagem)))
             frequencias_mensagem[move_dicionario_chave] = move_dicionario_valor
         # Adiciona o caracter encontrado para a chave
-        chave = chave + caracter_chave
-    return chave
+        chave_portugues = chave_portugues + caracter_chave_portugues
+        chave_ingles = chave_ingles + caracter_chave_ingles
+    return f'\nChave texto PT-BR = "{chave_portugues}"\nChave texto EN = "{chave_ingles}"'
 
-def lenkey(rep):
-    tamanhos = []
-    for sequencia, distancias_sequencia in rep.items():
-        for divisor in range(1, 21):
-            if all(d % divisor == 0 for d in distancias_sequencia):
-                tamanhos.append(divisor * len(sequencia))
-    # Calcula a média dos tamanhos encontrados para determinar o tamanho da chave
-    tamanho_chave = round(sum(tamanhos) / len(tamanhos))
-    if tamanho_chave:
-        return tamanho_chave
+# Função que apenas confere se a chave é valida para o usuario
+def retornar_resposta(mensagem, tamanho_chave):
+    print(find_key(mensagem, tamanho_chave))
+    escolha = input(f'\nAs chaves dadas acima são satisfatorias?S/N\n').upper()
+    if escolha == "N":
+        # Caso a chave não seja válida para o usuario, é possível procurar outra chave menor
+        retornar_resposta(mensagem,tamanho_chave - 1)
+    else:
+        print(":D")
 
 mensagem = message()
-print(find_key(mensagem, lenkey(find_rep(mensagem))))
+tamanho_chave = lenkey(find_rep(mensagem))
+
+retornar_resposta(mensagem, tamanho_chave)

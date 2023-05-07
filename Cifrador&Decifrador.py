@@ -1,7 +1,10 @@
+from unidecode import unidecode
+
 percorre_chave = 0
 
 # Função que usa o codigo ASCII das letras para cifragem
 def cifra(letra: str, chave: str) -> str:
+    # Garante que as letras teram o mesmo tipo
     if letra.isupper():
         chave = chave.upper()
     else:
@@ -49,8 +52,8 @@ def decifra(letra: str, chave: str) -> str:
 
 def cifrador():
     global percorre_chave
-    mensagem = input("Digite a mensagem a ser criptografada: ")
-    chave = input("Digite a chave para criptografia: ")
+    mensagem = unidecode(input("Digite a mensagem a ser criptografada: "))
+    chave = unidecode(input("Digite a chave para criptografia: "))
     criptograma = ""
     for caracter in mensagem:
         # Confere se é letra
@@ -72,8 +75,8 @@ def cifrador():
 
 def decifrador():
     global percorre_chave
-    criptograma = input("Digite a mensagem a ser decifrada: ")
-    chave = input("Digite a chave usada para cifragem: ")
+    criptograma = unidecode(input("Digite a mensagem a ser decifrada: "))
+    chave = unidecode(input("Digite a chave usada para cifragem: "))
     mensagem = ""
     for caracter in criptograma:
         if caracter.isalpha():
