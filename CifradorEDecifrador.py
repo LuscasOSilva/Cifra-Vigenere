@@ -6,7 +6,7 @@ percorre_chave = 0
 
 # Função que usa o codigo ASCII das letras para cifragem
 def cifra(letra: str, chave: str) -> str:
-    # Garante que as letras teram o mesmo tipo
+    # Garante que as letras terão o mesmo tipo
     if letra.isupper():
         chave = chave.upper()
     else:
