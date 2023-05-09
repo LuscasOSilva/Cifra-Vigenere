@@ -1,7 +1,7 @@
 # Cifra de Viginere
 Este programa implementa a cifra de Vigenere, uma cifra de substituição polialfabética que usa uma palavra-chave para determinar a sequência de alfabetos a serem usados na criptografia. É possível tanto cifrar como decifrar uma mensagem com a chave que é fornecida previamente.
 
-# Descrição "Crifrador&Descifrador"
+# Descrição "CrifradorEDescifrador"
 A cifra de Vigenere é uma extensão da cifra de César, onde a letra é substituída por outra letra para posições à frente dela no alfabeto. Na cifra de Vigenere, em vez de usar um deslocamento para todas as letras da mensagem, usa-se uma palavra-chave para determinar o deslocamentos que será realizado.
 
 O programa implementa duas funções principais: **cifra** e **decifra**. A função cifra recebe uma letra e uma chave e retorna a letra cifrada. A função decifra recebe uma letra e uma chave e retorna a letra decifrada.
@@ -18,7 +18,7 @@ Foi usado o código ASCII das letras para achar a letra cifrada e/ou decifrada.
 ```
 pip install unidecode
 ```
-3. Execute o comando python Cifrador&Decifrador.py no terminal.
+3. Execute o comando python CifradorEDecifrador.py no terminal.
 ```
 python Cifrador&Decifrador.py
 ```
