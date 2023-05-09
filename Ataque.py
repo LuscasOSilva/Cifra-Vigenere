@@ -15,9 +15,8 @@ def find_rep(mensagem):
     for i in range(len(mensagem) - 2):
         sequencia = mensagem[i:i+3]
         if sequencia in repeticoes:
-            #pega distancia da penultima ocorrencia até a ultima 
-            #Separa o primeiro indice da ultima repetição
-            repeticoes[sequencia].append(i)
+            # Pega as posições do inicio da repetição
+            repeticoes[sequencia].append(i)# RVG: 87, 120, 300, 456
         else:
             repeticoes[sequencia] = []
     # Separa apenas os padrões que foram encontrados mais de 1 vez
@@ -115,6 +114,7 @@ def retornar_resposta(mensagem, tamanho_chave):
         print(":D")
 
 mensagem = message()
+
 tamanho_chave = lenkey(find_rep(mensagem))
 
 retornar_resposta(mensagem, tamanho_chave)
